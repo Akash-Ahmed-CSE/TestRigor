@@ -1,0 +1,24 @@
+name: Run testRigor Web Tests
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Trigger testRigor test suite
+        run: |
+          curl -X POST "https://api.testrigor.com/v1/run_test" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.TESTRIGOR_API_KEY }}" \
+            -d '{
+              "test_suite_id": "YOUR_TEST_SUITE_ID",
+              "execution_name": "GitHub CI Run - ${{ github.run_number }}"
+            }'
