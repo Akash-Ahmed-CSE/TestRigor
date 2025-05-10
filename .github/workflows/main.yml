@@ -17,9 +17,9 @@ jobs:
         run: |
           curl -X POST \
             -H 'Content-type: application/json' \
-            -H 'auth-token: fc4cd116-1ebe-47db-8183-e6d7fe79fc52' \
+            -H 'auth-token: 4d2e93f8-42a4-411a-8684-71fc1d4cf896' \
             --data '{"forceCancelPreviousTesting":true,"storedValues":{"storedValueName1":"Value"}}' \
-            https://api.testrigor.com/api/v1/apps/sZTPc4eRro8poPLnh/retest
+            https://api.testrigor.com/api/v1/apps/ugeKE7d2wQo9FBfSM/retest
           
           sleep 10
           
@@ -27,9 +27,9 @@ jobs:
           do
             echo " "
             echo "==================================="
-            echo " Checking TestRigor retest"
+            echo " Checking run status"
             echo "==================================="
-            response=$(curl -i -o - -s -X GET 'https://api.testrigor.com/api/v1/apps/sZTPc4eRro8poPLnh/status' -H 'auth-token: fc4cd116-1ebe-47db-8183-e6d7fe79fc52' -H 'Accept: application/json')
+            response=$(curl -i -o - -s -X GET 'https://api.testrigor.com/api/v1/apps/ugeKE7d2wQo9FBfSM/status' -H 'auth-token: 4d2e93f8-42a4-411a-8684-71fc1d4cf896' -H 'Accept: application/json')
             code=$(echo "$response" | grep HTTP |  awk '{print $2}')
             body=$(echo "$response" | sed -n '/{/,/}/p')
             echo "Status code: " $code
